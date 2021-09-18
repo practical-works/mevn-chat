@@ -1,0 +1,15 @@
+GET http://localhost:9090/api/messages
+
+GET http://localhost:9090/api/messages/Ambratolm
+
+POST http://localhost:9090/api/messages
+
+{
+  "name": "Ambratolm",
+  "content": "Hello from the test.rest file"
+}
+
+DELETE http://localhost:9090/api/messages/
+
+DELETE http://localhost:9090/api/messages/Ambratolm
+

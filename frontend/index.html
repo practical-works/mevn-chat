@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MEVN-Chat</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./lib/bulma.min.css" />
+    <script src="./lib/vue.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div id="app" v-cloak>
+      <section class="section" @keydown.enter="postMessage">
+        <!-- Messages-Log -->
+        <div id="messages" class="messages box">
+          <div v-if="!messages.length" class="centered">
+            <h1 class="title">😐</h1>
+          </div>
+          <!-- Messages -->
+          <article v-for="message in messages" :key="message._id" class="media">
+            <div class="media-content">
+              <div class="content">
+                <strong v-if="message.name">👤 {{ message.name }}: </strong>
+                <strong v-else class="is-italic">(Unamed): </strong>
+                {{ message.content }}
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Message-Form -->
+        <div class="field has-addons box">
+          <!-- Generate-Name-Button -->
+          <div class="control">
+            <button
+              @click="generateName"
+              class="button"
+              title="Generate a random name"
+            >
+              🎲
+            </button>
+          </div>
+          <!-- Name-Input -->
+          <div class="control" style="width: 15%">
+            <input
+              v-model="newMessage.name"
+              class="input"
+              type="text"
+              placeholder="Name"
+            />
+          </div>
+          <!-- Message-Input -->
+          <div class="control is-expanded">
+            <input
+              v-model="newMessage.content"
+              id="message-input"
+              class="input"
+              type="text"
+              placeholder="✉️ Message"
+            />
+          </div>
+          <!-- Send-Button -->
+          <div class="control">
+            <button
+              @click="postMessage"
+              :disabled="!newMessage.content"
+              class="button is-info"
+            >
+              📩 Send
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+[v-cloak] {
+  display: none;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.messages {
+  height: 400px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+

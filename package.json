@@ -1,0 +1,22 @@
+{
+  "name": "mevn-chat",
+  "author": "Ambratolm",
+  "version": "1.0.0",
+  "description": "Realtime chat app with MongoDB, ExpressJS, VueJS, and NodeJS.",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo Execute `npm run db` then `npm run server` in separate terminals.",
+    "db": "mongod --storageEngine=mmapv1 --dbpath ./database",
+    "server": "nodemon ./",
+    "db-fix": "npm run db --repair"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "colors": "^1.4.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.7",
+    "morgan": "^1.10.0",
+    "socket.io": "^2.4.1"
+  }
+}
