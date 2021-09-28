@@ -49,37 +49,33 @@ npm run db
 ```bash
 npm run server
 ```
+
 ## ✈️ Deployment
 
 1. Create and run a live **MongoDB** database using a service like [**MongoDB Atlas**](https://www.mongodb.com/cloud/atlas) and get the **connection string**.
 
-  The MongoDB **connection string** (URL) usually looks something like this:
-
-  > mongodb+srv://**username**:**password**@**host-address**/**database-name**?retryWrites=true&w=majority
-
-  where **username**, **password**, **host-address**, and **database-name** are placeholders for the values provided by the service and specific to the user.
+    The MongoDB **connection string** (URL) usually looks something like this:
+    > mongodb+srv://**username**:**password**@**host-address**/**database-name**?retryWrites=true&w=majority
+    where **username**, **password**, **host-address**, and **database-name** are placeholders for the values provided by the service and specific to the user.
 
 2. Push the repository to a **node server** using a service like [**Heroku**](https://heroku.com).
 
-3. In the remote server:
+3. In the remote node server:
 
-  a. Set the environment variable `CONNECTION_STRING` to the obtained mongoDB **connection string**:
+    a. Set the environment variable `CONNECTION_STRING` to the obtained mongoDB **connection string**:
+    ```bash
+    CONNECTION_STRING=mongodb+srv://...etc
+    ```
 
-  ```bash
-  CONNECTION_STRING=mongodb+srv://...etc
-  ```
+    b. Install the dependencies:
+    ```bash
+    npm i
+    ```
 
-  b. Install the dependencies:
-
-  ```bash
-  npm i
-  ```
-
-  c. Start the server for production:
-
-  ```bash
-  npm start
-  ```
+    c. Start the server for production:
+    ```bash
+    npm start
+    ```
 
 ## 🚀 Development
 
