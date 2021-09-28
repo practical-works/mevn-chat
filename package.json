@@ -6,7 +6,8 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "start": "echo Execute `npm run db` then `npm run server` in separate terminals.",
+    "start": "node ./",
+    "help": "echo To run locally for development, execute `npm run db` first, then `npm run server` in separate terminals.",
     "db": "mongod --storageEngine=mmapv1 --dbpath ./database",
     "server": "nodemon ./",
     "db-fix": "npm run db --repair"

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./lib/bulma.min.css" />
     <script src="./lib/vue.min.js"></script>
+    <script src="./lib/moment.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="./app.js" defer></script>
   </head>
@@ -15,18 +16,44 @@
         <!-- Messages-Log -->
         <div id="messages" class="messages box">
           <div v-if="!messages.length" class="centered">
-            <h1 class="title">😐</h1>
+            <h1 class="is-size-1 has-text-grey">😐</h1>
           </div>
           <!-- Messages -->
-          <article v-for="message in messages" :key="message._id" class="media">
+          <!-- <article v-for="message in messages" :key="message._id" class="media">
             <div class="media-content">
-              <div class="content">
-                <strong v-if="message.name">👤 {{ message.name }}: </strong>
-                <strong v-else class="is-italic">(Unamed): </strong>
-                {{ message.content }}
-              </div>
+              <p class="content">
+                <strong v-if="message.name">👤 {{ message.name }}</strong>
+                <span v-else class="is-italic">👤 (Unamed)</span>
+                <small :title="message.createdAt">
+                  ⏰ {{ date(message.createdAt) }}
+                </small>
+              </p>
+              <p class="content">
+                <p class="tag is-large is-info is-light is-rounded">{{ message.content }}</p>
+              </p>
             </div>
-          </article>
+          </article> -->
+
+          <table class="table is-fullwidth is-narrow is-hoverable">
+            <tr v-for="message in messages" :key="message._id">
+              <td>
+                <div class="tags has-addons">
+                  <span class="tag is-large is-rounded is-info is-light">
+                    <span v-if="message.name">👤 {{ message.name }}</span>
+                    <span v-else class="is-italic">👤 (Unamed)</span>
+                  </span>
+                  <span class="tag is-large is-rounded">
+                    {{ message.content }}
+                  </span>
+                </div>
+              </td>
+              <td>
+                <span :title="message.createdAt" class="has-text-grey">
+                  ⏰ {{ date(message.createdAt) }}
+                </span>
+              </td>
+            </tr>
+          </table>
         </div>
 
         <!-- Message-Form -->
@@ -72,6 +99,20 @@
           </div>
         </div>
       </section>
+      <footer class="footer">
+        <p class="has-text-centered">
+          <strong>
+            <a href="https://github.com/practical-works/mevn-chat" target="_blank">
+              MEVN Chat
+            </a>
+          </strong>
+          &copy;
+          <strong>
+            <a href="https://github.com/ambratolm" target="_blank">Ambratolm</a>
+          </strong>
+          {{ new Date().getFullYear() }}
+        </p>
+      </footer>
     </div>
   </body>
 </html>

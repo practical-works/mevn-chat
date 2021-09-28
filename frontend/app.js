@@ -58,6 +58,9 @@ new Vue({
       this.messages.push(postedMessage);
       this.$nextTick(() => this.scrollDownMessages());
     },
+    date(timeStamp) {
+      return moment(new Date(timeStamp), "YYYYMMDD").fromNow();
+    },
     setName() {
       this.newMessage.name = localStorage.getItem("name");
       if (!this.newMessage.name) this.generateName();
@@ -71,6 +74,6 @@ new Vue({
     },
     focusMessageInput() {
       this.$el.querySelector("#message-input").focus();
-    },
+    }
   },
 });

@@ -30,36 +30,47 @@ app.use(logger("dev"));
 // ● Database
 //------------------------------------------------------------------------------
 const mongoose = require("mongoose");
-const connectionString = "mongodb://localhost:27017/mevn-chat";
+const connectionString =
+  process.env.CONNECTION_STRING || "mongodb://localhost:27017/mevn-chat";
 mongoose.connect(
   connectionString,
   { useNewUrlParser: true, useUnifiedTopology: true },
   (err) => {
     if (err) {
-      console.log(err.name.bgRed);
-      console.log(err.message.red);
+      const { name, message } = err;
+      console.log("Database Error".bgRed, `${name}: ${message}`.red);
       return;
     }
-    console.log("♦ database is ready...".bgGreen, connectionString.blue);
+    const { host, port, name } = mongoose.connection;
+    console.log(
+      "♦ database is ready...".bgGreen,
+      `${host}:${port}/${name}`.green
+    );
   }
 );
 
 //------------------------------------------------------------------------------
 // ● Models
 //------------------------------------------------------------------------------
-const Message = mongoose.model("Message", {
-  name: String,
-  content: String,
-});
+const Message = mongoose.model(
+  "Message",
+  new mongoose.Schema(
+    {
+      name: String,
+      content: String,
+    },
+    { timestamps: true }
+  )
+);
 
 //------------------------------------------------------------------------------
 // ● App-Server-Bootstrap
 //------------------------------------------------------------------------------
-const address = "localhost";
-const port = 9090;
+const address = process.env.HOST;
+const port = process.env.PORT || 9090;
 server = app.listen(port, address, () => {
   console.cls();
-  const url = `http://${address}:${port}`;
+  const url = `http://${address || "localhost"}:${port}`;
   console.log("♦ server is listening...".bgGreen, url.blue);
 });
 
@@ -68,7 +79,7 @@ server = app.listen(port, address, () => {
 //------------------------------------------------------------------------------
 const io = require("socket.io")(server);
 io.on("connection", (socket) => {
-  console.log("A user is connected...");
+  console.log("• A user is connected.");
 });
 
 //------------------------------------------------------------------------------

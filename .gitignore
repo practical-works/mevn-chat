@@ -3,6 +3,7 @@ database
 
 # Editor files
 *.sublime-*
+.vscode
 
 # Logs
 logs
