@@ -13,15 +13,73 @@
 
 Realtime chat web application example made with the **MEVN** stack (**MongoDB**, **ExpressJS**, **VueJS**, and **NodeJS**).
 
+[**🌐 View Live Demo**](https://amb-mevn-chat.herokuapp.com/)
+
 ![Screenshot](./screenshot.gif?raw=true)
 
 ## 🏁 Getting started
 
-1. [Clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) the repository.
-2. Install the dependencies: `npm i`
-3. Install [Nodemon](https://github.com/remy/nodemon/) globally: `npm i -g nodemon`
-4. Run database: `npm run db`
-5. Run server: `npm run server`
+1. [Clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) the repository:
+
+```bash
+cd somewhere
+git clone https://github.com/practical-works/mevn-chat.git
+cd mevn-chat
+```
+2. Install the dependencies:
+
+```bash
+npm i
+```
+
+3. Install [Nodemon](https://github.com/remy/nodemon/) globally:
+
+```bash
+npm i -g nodemon`
+```
+
+4. Run development **database**:
+
+```bash
+npm run db
+```
+
+5. Run development **server**:
+
+```bash
+npm run server
+```
+## ✈️ Deployment
+
+1. Create and run a live **MongoDB** database using a service like [**MongoDB Atlas**](https://www.mongodb.com/cloud/atlas) and get the **connection string**.
+
+  The MongoDB **connection string** (URL) usually looks something like this:
+
+  > mongodb+srv://**username**:**password**@**host-address**/**database-name**?retryWrites=true&w=majority
+
+  where **username**, **password**, **host-address**, and **database-name** are placeholders for the values provided by the service and specific to the user.
+
+2. Push the repository to a **node server** using a service like [**Heroku**](https://heroku.com).
+
+3. In the remote server:
+
+  a. Set the environment variable `CONNECTION_STRING` to the obtained mongoDB **connection string**:
+
+  ```bash
+  CONNECTION_STRING=mongodb+srv://...etc
+  ```
+
+  b. Install the dependencies:
+
+  ```bash
+  npm i
+  ```
+
+  c. Start the server for production:
+
+  ```bash
+  npm start
+  ```
 
 ## 🚀 Development
 
@@ -51,6 +109,7 @@ Realtime chat web application example made with the **MEVN** stack (**MongoDB**,
   - Main: [**Bulma**](https://github.com/jgthms/bulma)
 - 🔧 Utils:
   - Realtime Communication (Client Side): [**Socket.IO**](https://github.com/socketio/socket.io)
+  - Date Formatting: [**MomentJS**](https://github.com/moment/moment)
 
 ## 📄 License
 
